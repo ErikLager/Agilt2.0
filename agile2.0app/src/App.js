@@ -2,11 +2,12 @@ import logo from './logo.svg';
 import './App.css';
 import Shop from './views/Shop';
 import Footer from './views/Footer';
+import Homepage from './views/Homepage';
 
 function App() {
   return (
     <>
-    <h1>This is app.js</h1>
+    <Homepage/>
     <Shop/>
     <Footer/>
     </>

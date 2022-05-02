@@ -1,5 +1,60 @@
+@font-face {
+  font-family: 'ApplePixel';
+  src: url('./fonts/ApplePixel.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Serpentine';
+  src: url('./fonts/Serpentine.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Serpentine-Bold';
+  src: url('./fonts/Serpentine-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Thunderstorm';
+  src: url('./fonts/Thunderstorm.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'AppleGaramond';
+  src: url('./fonts/AppleGaramond.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'AppleGaramond-Light';
+  src: url('./fonts/AppleGaramond-Light.ttf') format('truetype');
+}
+
 .App {
   text-align: center;
+}
+
+.apple-text {
+  font-family: 'ApplePixel';
+}
+
+.serpentine {
+  font-family: 'Serpentine';
+}
+
+.serpentine-bold {
+  font-family: 'Serpentine-Bold';
+}
+
+.thunderstorm {
+  font-size: 2rem;
+  font-family: 'Thunderstorm';
+}
+
+.apple-garamond {
+  font-family: 'AppleGaramond';
+}
+
+.apple-garamond-light {
+  font-family: 'AppleGaramond-Light';
 }
 
 .App-logo {

@@ -1,5 +1,5 @@
-import logo from './logo.svg';
 import './App.css';
+import FontTest from './components/testing/FontTest';
 import Shop from './views/Shop';
 import Footer from './views/Footer';
 import Homepage from './views/Homepage';
@@ -9,11 +9,12 @@ import Cart from './views/Cart';
 function App() {
   return (
     <>
-    <Homepage/>
-    <Navbar/>
-    <Cart/>
-    <Shop/>
-    <Footer/>
+      <FontTest />
+      <Homepage/>
+      <Navbar/>
+      <Cart/>
+      <Shop/>
+      <Footer/>
     </>
   );
 }

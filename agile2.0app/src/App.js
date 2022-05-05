@@ -5,6 +5,7 @@ import Footer from './views/Footer';
 import Homepage from './views/Homepage';
 import Navbar from './views/Navbar';
 import Cart from './views/Cart';
+import Contactus from './views/Contactus';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <FontTest />
       <Homepage/>
       <Navbar/>
+      <Contactus/>
       <Cart/>
       <Shop/>
       <Footer/>

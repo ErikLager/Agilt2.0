@@ -1,3 +1,7 @@
+:root{
+  --BgColor: #c1c1c1;
+}
+
 @font-face {
   font-family: 'ApplePixel';
   src: url('./fonts/ApplePixel.ttf') format('truetype');

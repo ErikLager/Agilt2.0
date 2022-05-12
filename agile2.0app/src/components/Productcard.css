@@ -6,7 +6,7 @@
     position: relative;
     width: 320px;
     height: 450px;
-    background-image: url("Cardbg2.jpg");
+    background-image: url("Cardbg.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     border-style: groove;
@@ -44,8 +44,9 @@ img{
 }
 
 .container .card .contentBx h2{
+    font-family: Thunderstorm;
+    font-size: 3rem;
     position: relative;
-    font-weight: 600;
     letter-spacing: 1px;
     color: #fff;
     margin: 0;
@@ -74,7 +75,8 @@ img{
     transition-delay: 0.6s;
 }
 
-.container .card .contentBx .size h3, .container .card .contentBx .color h3{
+.container .card .contentBx h3{
+    font-style: Serpentine;
     color: #fff;
     font-weight: 300;
     font-size: 14px;

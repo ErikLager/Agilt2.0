@@ -5,7 +5,7 @@ const Footer = () => {
             <footer>
                 <div>
                     <p>
-                        Contact us <a href="#">Here</a>
+                        <a href="#">Contact us</a>
                     </p>
                     <hr />
                     <p class="xs">

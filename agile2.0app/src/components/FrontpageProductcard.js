@@ -6,7 +6,7 @@ const FrontpageProductcard = () => {
   return (
     <div class="container">
       <div class="card">
-        <img src={Hat} />
+        <img className="frontimg" src={Hat} />
         <div class="contentBx">
           <h2>Fancy Hat</h2>
           <div class="size">

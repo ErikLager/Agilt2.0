@@ -1,0 +1,92 @@
+.container {
+	color: white;
+	background-color: #D8E4F3;
+	width: 100%;
+	padding: 1rem 1rem;
+	display: flex;
+	justify-content: space-between;
+	font-family: verdana;
+}
+
+.container h1 {
+	color: black;
+	font-family: Serpentine;
+	font-size: 2.4rem;
+}
+
+.left > * {
+	margin: 1rem;
+}
+
+.container a.current {
+	font-weight: bold;
+	color: red;
+	box-shadow: 0 2px 0 #1132C3;
+}
+
+.container a:visited {
+	color: #1132C3;
+}
+
+.container a:hover {
+	text-decoration: none;
+	box-shadow: 0 0 0 #1132C3;
+}
+
+.container a:active {
+	color: #98A2CB;
+}
+
+.container a {
+	color: #1132C3;
+	box-shadow: 0 1px 0 #1132C3;
+	text-decoration: none;
+}
+
+.left, .right {
+	display: flex;
+	align-items: center;
+}
+
+.right {
+	text-align: right;
+}
+
+.container .menuButton {
+	display: none;
+}
+
+/* 710px bredd */
+@media only screen and (max-width: 740px) {
+	.container .navbarItem {
+		display: none;
+	}
+	
+	.container .menuButton {
+		display: inline;
+	}
+}
+
+.menuOverlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100vh;
+	background-color: #D8E4F3;
+	width: 85%;
+	z-index: 99999;
+	color: white;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	border: 2px solid dodgerblue;
+}
+
+.menuOverlay a {
+	margin-bottom: 1rem;
+}
+
+.menuIsOverlayed {
+	overflow-y: hidden;
+}

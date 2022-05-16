@@ -87,6 +87,32 @@
   color: #61dafb;
 }
 
+
+
+/* ---------------------Footer style--------------------- */
+footer{
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  background-color: var(--BgColor);
+}
+
+footer div{
+  text-align: center;
+}
+
+footer p{
+  padding: 1rem;
+  font-size: 1.3rem;
+}
+
+footer div div{
+  border: 1px solid orange;
+}
+
+footer .xs{
+  font-size: .8rem;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

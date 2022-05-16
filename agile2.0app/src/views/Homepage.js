@@ -1,8 +1,14 @@
+import './Homepage.css';
+
+
 const Homepage = () => {
 //landingPage
     return (
         <>
-        <h1>This is the Homepage</h1>
+        <div class="HomepageContainer">
+
+
+        </div>
         </>
     )
 };

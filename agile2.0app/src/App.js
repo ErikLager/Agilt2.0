@@ -6,8 +6,7 @@ import Homepage from './views/Homepage';
 import Navbar from './views/Navbar';
 import Cart from './views/Cart';
 import Contactus from './views/Contactus';
-import Productcard from './components/Productcard';
-import Button from './components/Button/Button'
+import FrontpageProductcard from './components/FrontpageProductcard';
 
 function App() {
   return (
@@ -16,8 +15,7 @@ function App() {
       <Homepage/>
       <Navbar/>
       <Contactus/>
-      <Productcard/>
-      <Button label='Click here' onClick={() => console.log('Hello')} />
+      <FrontpageProductcard/>
       <Cart/>
       <Shop/>
       <Footer/>

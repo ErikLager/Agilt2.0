@@ -1,0 +1,17 @@
+.primary {
+  font-family: 'Times New Roman';
+	box-shadow: none;
+	border: 1px solid #003c74;
+	background: linear-gradient(
+			180deg,
+			rgba(255, 255, 255, 1) 0%,
+			rgba(236, 235, 229, 1) 86%,
+			rgba(216, 208, 196, 1) 100%
+	);
+	font-size: 11px;
+	border-radius: 3px;
+}
+
+.big {
+  padding: 1rem;
+}

@@ -7,6 +7,7 @@ import Navbar from './views/Navbar';
 import Cart from './views/Cart';
 import Contactus from './views/Contactus';
 import Productcard from './components/Productcard';
+import Button from './components/Button/Button'
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Navbar/>
       <Contactus/>
       <Productcard/>
+      <Button />
       <Cart/>
       <Shop/>
       <Footer/>

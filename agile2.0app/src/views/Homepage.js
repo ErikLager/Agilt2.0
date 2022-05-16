@@ -7,13 +7,18 @@ const Homepage = () => {
     return (
         <>
         <div class="HomepageContainer">
-            <div class="Content">
-                <Productcard/>
+        <h1 class="Homepagetitel">New stuff</h1>
+            <div class="NewsList">
                 <Productcard/>
                 <Productcard/>
                 <Productcard/>
             </div>
-
+            <h1 class="Homepagetitel">Featured list</h1>
+            <div class="featuredList">
+                <Productcard/>
+                <Productcard/>
+                <Productcard/>
+            </div>
         </div>
         </>
     )

@@ -5,6 +5,7 @@ const Productcard = () => {
 
     return (
         <div class="container">
+          <a href="#">
   <div class="card">
         <img src={Hat}/>
     <div class="contentBx">
@@ -15,6 +16,7 @@ const Productcard = () => {
       <a href="#">Read more</a>
     </div>
   </div>
+  </a>
 </div>
     )
 };

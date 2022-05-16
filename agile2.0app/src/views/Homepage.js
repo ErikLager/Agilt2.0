@@ -1,3 +1,4 @@
+import Productcard from '../components/Productcard';
 import './Homepage.css';
 
 
@@ -6,7 +7,12 @@ const Homepage = () => {
     return (
         <>
         <div class="HomepageContainer">
-
+            <div class="Content">
+                <Productcard/>
+                <Productcard/>
+                <Productcard/>
+                <Productcard/>
+            </div>
 
         </div>
         </>

@@ -2,3 +2,12 @@
     background-color: #c1c1c1;
     height: 100vh;
 }
+
+.Content {
+    display: flex;
+    padding: 10rem;
+    
+}
+.HomepageContainer .card{
+    margin: 2rem;
+}

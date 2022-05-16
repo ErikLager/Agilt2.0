@@ -2,6 +2,7 @@
     width: 90%;
     margin: auto;
     box-sizing: border-box;
+    background-color: var(--BgColor);
 }
 
 .prodlist{
@@ -13,11 +14,13 @@
     width: 22%;
     margin: 1%;
     border: 1px solid black;
+    text-decoration: none;
 }
 
 .prodCard p{
     overflow: hidden;
     text-align: center;
+    color: black;
 }
 
 .prodimg{

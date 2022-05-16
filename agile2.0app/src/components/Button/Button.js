@@ -1,10 +1,16 @@
 import styles from './Button.module.css'
 const primary = styles.primary
-const big = styles.big
+const medium = styles.medium
 
-const Button = () => {
+const Button = ({ label, onClick }) => {
+	
 	return (
-		<button className={`${big} ${primary}`}>Button</button>
+		<button
+			className={`${medium} ${primary}`}
+			onClick={onClick}
+		>
+			{label}
+		</button>
 	)
 }
 

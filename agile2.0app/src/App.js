@@ -17,7 +17,7 @@ function App() {
       <Navbar/>
       <Contactus/>
       <Productcard/>
-      <Button />
+      <Button label='Click here' onClick={() => console.log('Hello')} />
       <Cart/>
       <Shop/>
       <Footer/>

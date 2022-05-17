@@ -6,6 +6,7 @@
     position: relative;
     width: 320px;
     height: 450px;
+    background-color: #c1c1c1;
     background-image: url("Cardbg.jpg");
     background-size: cover;
     background-repeat: no-repeat;

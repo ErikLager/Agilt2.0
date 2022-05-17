@@ -15,7 +15,6 @@ function App() {
       <Homepage/>
       <Navbar/>
       <Contactus/>
-      <Productcard/>
       <Cart/>
       <Shop/>
       <Footer/>

@@ -1,14 +1,24 @@
-import "./ProdCard.css";
+import './Productcard.css';
+import Hat from './Hat.png';
 
-const ProductCard = () => {
+const Productcard = () => {
+
     return (
-        <>
-            <a href="#" className="prodCard">
-                <img className="prodimg" src="https://static.vecteezy.com/system/resources/previews/001/191/178/non_2x/flower-floral-png.png" />
-                <p>Test</p>
-            </a>
-        </>
+        <div class="container">
+          <a href="#">
+  <div class="card">
+        <img src={Hat}/>
+    <div class="contentBx">
+      <h2>Fancy Hat</h2>
+      <div class="size">
+        <h3>This is some random text</h3>
+      </div>
+      <a href="#">Read more</a>
+    </div>
+  </div>
+  </a>
+</div>
     )
 };
 
-export default ProductCard;
+export default Productcard;

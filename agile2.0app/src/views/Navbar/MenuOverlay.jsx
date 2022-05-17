@@ -1,13 +1,11 @@
 import styles from './Navbar.module.css'
+import { Link } from 'react-router-dom'
 
-const MenuOverlay = () => {
+const MenuOverlay = ({ children }) => {
 	
 	return (
 		<div className={`${styles.menuOverlay}`}>
-			<a href=''>Home</a>
-			<a href=''>Sneakers</a>
-			<a href=''>Shirts</a>
-			<a className={`${styles.listItem}`} href=''>Pants</a>
+			{children}
 		</div>
 	)
 }

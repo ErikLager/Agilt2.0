@@ -1,5 +1,6 @@
 import styles from './Homepage.module.css';
 import FrontpageProductcard from '../../components/FrontpageProductcard';
+import HomepageContent from '../HomepageContent'
 
 
 const Homepage = () => {
@@ -7,7 +8,7 @@ const Homepage = () => {
     <>
       <main class={styles.container}>
         <h2 className={styles.title}>Hello there!</h2>
-        <FrontpageProductcard />
+        <HomepageContent />
       </main>
     </>
   )

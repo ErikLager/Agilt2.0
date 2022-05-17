@@ -3,6 +3,7 @@ import './App.css';
 import Layout from './views/Layout'
 import Homepage from './views/Homepage/Homepage'
 import Shop from './views/Shop'
+import Contactus from './views/Contactus'
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Route path='/' element={<Layout />}>
           <Route index element={<Homepage />} />
           <Route path='sneakers' element={<Shop />} />
+          <Route path='contact' element={<Contactus />} />
         </Route>
       </Routes>
     </BrowserRouter>

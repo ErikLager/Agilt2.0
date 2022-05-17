@@ -2,6 +2,10 @@
   --BgColor: #c1c1c1;
 }
 
+* {
+ box-sizing: border-box; 
+}
+
 @font-face {
   font-family: 'ApplePixel';
   src: url('./fonts/ApplePixel.ttf') format('truetype');
@@ -85,6 +89,10 @@
 
 .App-link {
   color: #61dafb;
+}
+
+body {
+  width: 100%;
 }
 
 

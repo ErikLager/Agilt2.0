@@ -1,5 +1,5 @@
 import HomepageProductCard from "../components/FrontpageProductcard"
-import './Homepage.css';
+import './HomepageContent.css';
 
 
 const Homepage = () => {

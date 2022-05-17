@@ -52,21 +52,6 @@
 	text-align: right;
 }
 
-.container .menuButton {
-	display: none;
-}
-
-/* 710px bredd */
-@media only screen and (max-width: 740px) {
-	.container .navbarItem {
-		display: none;
-	}
-	
-	.container .menuButton {
-		display: inline;
-	}
-}
-
 .menuOverlay {
 	position: fixed;
 	top: 0;

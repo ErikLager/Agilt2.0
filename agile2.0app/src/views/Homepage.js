@@ -1,4 +1,4 @@
-import Productcard from '../components/Productcard';
+import HomepageProductCard from "../components/FrontpageProductcard"
 import './Homepage.css';
 
 
@@ -9,15 +9,15 @@ const Homepage = () => {
         <div class="HomepageContainer">
         <h1 class="Homepagetitel">New stuff</h1>
             <div class="NewsList">
-                <Productcard/>
-                <Productcard/>
-                <Productcard/>
+                <HomepageProductCard/>
+                <HomepageProductCard/>
+                <HomepageProductCard/>
             </div>
             <h1 class="Homepagetitel">Featured list</h1>
             <div class="featuredList">
-                <Productcard/>
-                <Productcard/>
-                <Productcard/>
+                <HomepageProductCard/>
+                <HomepageProductCard/>
+                <HomepageProductCard/>
             </div>
         </div>
         </>

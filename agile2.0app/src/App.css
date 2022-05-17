@@ -2,6 +2,10 @@
   --BgColor: #c1c1c1;
 }
 
+* {
+ box-sizing: border-box; 
+}
+
 @font-face {
   font-family: 'ApplePixel';
   src: url('./fonts/ApplePixel.ttf') format('truetype');
@@ -85,6 +89,36 @@
 
 .App-link {
   color: #61dafb;
+}
+
+body {
+  width: 100%;
+}
+
+
+
+/* ---------------------Footer style--------------------- */
+footer{
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  background-color: var(--BgColor);
+}
+
+footer div{
+  text-align: center;
+}
+
+footer p{
+  padding: 1rem;
+  font-size: 1.3rem;
+}
+
+footer div div{
+  border: 1px solid orange;
+}
+
+footer .xs{
+  font-size: .8rem;
 }
 
 @keyframes App-logo-spin {

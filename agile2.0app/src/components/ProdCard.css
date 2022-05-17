@@ -1,0 +1,42 @@
+.content{
+    width: 90%;
+    margin: auto;
+    box-sizing: border-box;
+    background-color: var(--BgColor);
+}
+
+.prodlist{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.prodCard{
+    width: 22%;
+    margin: 1%;
+    border: 1px solid black;
+    text-decoration: none;
+}
+
+.prodCard p{
+    overflow: hidden;
+    text-align: center;
+    color: black;
+}
+
+.prodimg{
+    width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+@media screen and (max-width: 900px) {
+    .prodCard{
+        width: 47%;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .prodCard{
+        width: 100%;
+    }
+}

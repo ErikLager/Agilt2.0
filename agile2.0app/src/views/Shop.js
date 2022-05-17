@@ -1,8 +1,38 @@
+import ProductCard from "../components/ProductCard";
+
 const Shop = () => {
 
     return (
         <>
-        <h1>This is the Shop</h1>
+            <div class="content">
+                <h1 class="center">This is the Shop</h1>
+                <div class="prodlist">
+                    <ProductCard />
+                    <ProductCard />
+                    <ProductCard />
+                    <ProductCard />
+                    <ProductCard />
+                    <ProductCard />
+                    <ProductCard />
+                    <ProductCard />
+                    <ProductCard />
+                    <ProductCard />
+                    <ProductCard />
+                    <ProductCard />
+                    <ProductCard />
+                    <ProductCard />
+                    <ProductCard />
+                    <ProductCard />
+                    <ProductCard />
+                    <ProductCard />
+                    <ProductCard />
+                    <ProductCard />
+                    <ProductCard />
+                    <ProductCard />
+                    <ProductCard />
+                    <ProductCard />
+                </div>
+            </div>
         </>
     )
 };

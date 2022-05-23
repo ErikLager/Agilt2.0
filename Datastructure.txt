@@ -1,0 +1,9 @@
+CRUD
+Product={
+    Id: Auto generated,
+    Name:
+    pictures=[]
+    categories=[]
+    isFeatured= false
+    inStock= true
+}

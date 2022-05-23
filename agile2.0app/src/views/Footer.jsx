@@ -10,7 +10,7 @@ const Footer = () => {
                         <Link to='/contact'>Contact us</Link>
                     </p>
                     <hr />
-                    <p class="xs">
+                    <p className="xs">
                         Copright© Erik Lagergren, Oscar Niklasson, Jacob Reinikainen Lindström
                     </p>
                     <hr />

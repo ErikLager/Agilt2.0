@@ -1,28 +1,90 @@
-import productlist from "./mockProduct";    
+import productlist from "./mockProduct";
+import "./AdminProductlist.css";
 
 const AdminProductList = () => {
-    return(
+    return (
         <>
             <h1>List of all the products</h1>
-            {
-                productlist.map((item, index) => {
-                    console.log(item);
-
-                    return(
-                        <div className="productelement">
-                            <p>{item.name}</p>
-                            {/* <img src={item.pictures[0]}></img> */}
-                            <ul>
-                                {item.categories.map((item, index)=>{
-                                    return(
-                                        <li key={index}>{item}</li>
-                                    )
-                                })}
-                            </ul>
-                        </div>
-                    )
-                })
-            }
+            <table>
+                <thead>
+                    <tr>
+                        <th>
+                            Id
+                        </th>
+                        <th>
+                            Name
+                        </th>
+                        <th>
+                            Description
+                        </th>
+                        <th>
+                            Tags
+                        </th>
+                        <th>
+                            In Stock
+                        </th>
+                        <th>
+                            Featured
+                        </th>
+                        <th>
+                            Images
+                        </th>
+                        <th>
+                            Update
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        productlist.map((item, index) => {
+                            let instock;
+                            if (item.inStock){
+                                instock="checked"
+                            }
+                            return (
+                                <tr key={index} className="item">
+                                    <td>
+                                        {item.id}
+                                    </td>
+                                    <td>
+                                        <input type="text" defaultValue={item.name} />
+                                    </td>
+                                    <td>
+                                        <input type="text" defaultValue={item.description} />
+                                    </td>
+                                    <td>
+                                        <input type="text" defaultValue=
+                                            {
+                                                item.categories.map((item) => {
+                                                    return `${item} \n`
+                                                })
+                                            }
+                                        />
+                                    </td>
+                                    <td>
+                                        <input type="checkbox"/>
+                                    </td>
+                                    <td>
+                                        <input type="checkbox"/>
+                                    </td>
+                                    <td>
+                                    <input type="text" rows="4" defaultValue=
+                                            {
+                                                item.pictures.map((item) => {
+                                                    return `${item} \n`
+                                                })
+                                            }
+                                        />
+                                    </td>
+                                    <td>
+                                        <button>Update</button>
+                                    </td>
+                                </tr>
+                            )
+                        })
+                    }
+                </tbody>
+            </table>
         </>
     )
 };

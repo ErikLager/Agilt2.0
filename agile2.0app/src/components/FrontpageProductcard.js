@@ -4,12 +4,12 @@ import Hat from './Hat.png';
 const FrontpageProductcard = () => {
 
   return (
-    <div class="container">
-      <div class="card">
+    <div className="container">
+      <div className="card">
         <img className="frontimg" src={Hat} />
-        <div class="contentBx">
+        <div className="contentBx">
           <h2>Fancy Hat</h2>
-          <div class="size">
+          <div className="size">
             <h3>This is some random text</h3>
           </div>
           <a href="#">Read more</a>

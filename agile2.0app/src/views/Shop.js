@@ -4,9 +4,9 @@ const Shop = () => {
 
     return (
         <>
-            <div class="content">
-                <h1 class="center">This is the Shop</h1>
-                <div class="prodlist">
+            <div className="content">
+                <h1 className="center">This is the Shop</h1>
+                <div className="prodlist">
                     <ProductCard />
                     <ProductCard />
                     <ProductCard />

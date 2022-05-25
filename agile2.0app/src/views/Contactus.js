@@ -1,27 +1,89 @@
+import { useState } from 'react'
 import './Contactus.css'
 
 const Contactus = () => {
-
-
-    return (
-        <>
-       <form className="contactus-form">
-    <div className="form-group">
-        <label htmlFor="name">Name</label>
-        <input type="text" className="form-control" />
-    </div>
-    <div className="form-group">
-        <label htmlFor="exampleInputEmail1">Email address</label>
-        <input type="email" className="form-control" aria-describedby="emailHelp" />
-    </div>
-    <div className="form-group">
-        <label htmlFor="message">Message</label>
-        <textarea className="form-control" rows="5"></textarea>
-    </div>
-    <button class="Submit-btn">Submit</button>
-</form>
-        </>
-    )
+	const [formData, setFormData] = useState({
+		name: '',
+		email: '',
+		message: ''
+	})
+	
+	const sendMessage = (e) => {
+		e.preventDefault()
+		console.log(formData)
+		postMessage(formData)
+		resetFormData()
+	}
+	
+	async function postMessage(messageData) {
+		console.log(messageData)
+		const res = await fetch('http://localhost:5002/api/newcustomermessage', {
+			method: 'post',
+			body: JSON.stringify({
+				name: messageData.name,
+				email: messageData.email,
+				message: messageData.message
+			}),
+			headers: {
+				"Content-Type": "application/json"
+			},
+		})
+		const data = await res.json()
+		alert(JSON.stringify(data))
+	}
+	
+	function handleInput(e) {
+		console.log(e.target.value)
+		console.log(e.target.name)
+		setFormData({...formData, [e.target.name]: e.target.value})
+	}
+	
+	function resetFormData() {
+		setFormData({
+			name: '',
+			email: '',
+			message: ''
+		})
+	}
+	
+  return (
+  	<>
+    	<form onSubmit={sendMessage} className="contactus-form">
+    		<div className="form-group">
+        	<label htmlFor="name">Name</label>
+        	<input
+						type="text"
+						name='name'
+						className="form-control"
+						onChange={handleInput}
+						value={formData.name}
+					/>
+    		</div>
+   			<div className="form-group">
+        	<label htmlFor="exampleInputEmail1">Email address</label>
+        	<input
+						type="email"
+						name='email'
+						className="form-control"
+						aria-describedby="emailHelp"
+						onChange={handleInput}
+						value={formData.email}
+					/>
+    		</div>
+    		<div className="form-group">
+        	<label htmlFor="message">Message</label>
+        	<textarea
+						name='message'
+						className="form-control"
+						rows="5"
+						onChange={handleInput}
+						value={formData.message}
+					></textarea>
+    		</div>
+    		<button class="Submit-btn">Submit</button>
+			</form>
+    </>
+  )
 };
 
 export default Contactus;

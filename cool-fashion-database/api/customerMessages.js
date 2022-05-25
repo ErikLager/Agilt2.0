@@ -8,7 +8,8 @@ customerMessageRouter.post("/newcustomermessage", (req, res) => {
 	const newCustomerMessage = new CustomerMessage({
 		name: req.body.name,
 		email: req.body.email,
-		message: req.body.message
+		message: req.body.message,
+		timestamp: req.body.timestamp
 	});
 	newCustomerMessage.save((err) => {
 		if (err) {

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './Contactus.css'
 
 const Contactus = () => {
+	const [messageSent, setMessageSent] = useState(false)
 	const [formData, setFormData] = useState({
 		name: '',
 		email: '',
@@ -22,14 +23,18 @@ const Contactus = () => {
 			body: JSON.stringify({
 				name: messageData.name,
 				email: messageData.email,
-				message: messageData.message
+				message: messageData.message,
+				timestamp: Date.now()
 			}),
 			headers: {
 				"Content-Type": "application/json"
 			},
 		})
 		const data = await res.json()
-		alert(JSON.stringify(data))
+		if (!data.msg.msgError) {
+			console.log('it is cool bro')
+			setMessageSent(true)
+		}
 	}
 	
 	function handleInput(e) {
@@ -47,21 +52,22 @@ const Contactus = () => {
 	}
 	
   return (
-  	<>
-    	<form onSubmit={sendMessage} className="contactus-form">
-    		<div className="form-group">
-        	<label htmlFor="name">Name</label>
-        	<input
+		<div className='contactus-container'>
+			{!messageSent && (
+			<form onSubmit={sendMessage} className="contactus-form">
+				<div className="form-group">
+					<label htmlFor="name">Name</label>
+					<input
 						type="text"
 						name='name'
 						className="form-control"
 						onChange={handleInput}
 						value={formData.name}
 					/>
-    		</div>
-   			<div className="form-group">
-        	<label htmlFor="exampleInputEmail1">Email address</label>
-        	<input
+				</div>
+			 	<div className="form-group">
+					<label htmlFor="exampleInputEmail1">Email address</label>
+					<input
 						type="email"
 						name='email'
 						className="form-control"
@@ -69,20 +75,27 @@ const Contactus = () => {
 						onChange={handleInput}
 						value={formData.email}
 					/>
-    		</div>
-    		<div className="form-group">
-        	<label htmlFor="message">Message</label>
-        	<textarea
+				</div>
+				<div className="form-group">
+					<label htmlFor="message">Message</label>
+					<textarea
 						name='message'
 						className="form-control"
 						rows="5"
 						onChange={handleInput}
 						value={formData.message}
 					></textarea>
-    		</div>
-    		<button class="Submit-btn">Submit</button>
+				</div>
+				<button class="Submit-btn">Submit</button>
 			</form>
-    </>
+			)}
+			{messageSent && (
+				<>
+					<h2>Thank you for your message!</h2>
+				</>
+			)}
+		</div>
+  
   )
 };
 

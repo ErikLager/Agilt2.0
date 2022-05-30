@@ -92,7 +92,7 @@ userRouter.get(
     res.clearCookie("access-token");
     res
       .status(200)
-      .json({ msg: { msgBody: "You have successfully logged out, my good sir!", msgError: true } });
+      .json({ msg: { msgBody: "You have successfully logged out, my good sir!", msgError: false } });
   }
 );
 

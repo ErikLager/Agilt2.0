@@ -8,7 +8,11 @@ productRouter.post("/newproduct", (req, res) => {
 	const newProduct = new Product({
 		name: req.body.name,
 		inStock: req.body.inStock,
-		description: req.body.description
+		description: req.body.description,
+		price: req.body.price,
+		pictures: req.body.pictures,
+		categories: req.body.categories,
+		isFeatured: req.body.isFeatured,
 	});
 	newProduct.save((err) => {
 		if (err) {

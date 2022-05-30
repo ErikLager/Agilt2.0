@@ -37,10 +37,6 @@ const AdminProductList = () => {
                 <tbody>
                     {
                         productlist.map((item, index) => {
-                            let instock;
-                            if (item.inStock){
-                                instock="checked"
-                            }
                             return (
                                 <tr key={index} className="item">
                                     <td>
@@ -62,13 +58,13 @@ const AdminProductList = () => {
                                         />
                                     </td>
                                     <td>
-                                        <input type="checkbox"/>
+                                        <input type="checkbox" defaultChecked={item.inStock} />
                                     </td>
                                     <td>
-                                        <input type="checkbox"/>
+                                        <input type="checkbox" defaultChecked={item.isFeatured}/>
                                     </td>
                                     <td>
-                                    <input type="text" rows="4" defaultValue=
+                                        <input type="text" rows="4" defaultValue=
                                             {
                                                 item.pictures.map((item) => {
                                                     return `${item} \n`

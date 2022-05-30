@@ -18,7 +18,7 @@ const Contactus = () => {
 	
 	async function postMessage(messageData) {
 		console.log(messageData)
-		const res = await fetch('http://localhost:5002/api/newcustomermessage', {
+		const res = await fetch('http://localhost:5003/api/newcustomermessage', {
 			method: 'post',
 			body: JSON.stringify({
 				name: messageData.name,
@@ -86,7 +86,7 @@ const Contactus = () => {
 						value={formData.message}
 					></textarea>
 				</div>
-				<button class="Submit-btn">Submit</button>
+				<button className="Submit-btn">Submit</button>
 			</form>
 			)}
 			{messageSent && (

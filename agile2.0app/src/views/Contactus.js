@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './Contactus.css'
 
 const Contactus = () => {
+	const PORT = process.env.REACT_APP_PORT
 	const [messageSent, setMessageSent] = useState(false)
 	const [formData, setFormData] = useState({
 		name: '',
@@ -18,7 +19,7 @@ const Contactus = () => {
 	
 	async function postMessage(messageData) {
 		console.log(messageData)
-		const res = await fetch('http://localhost:5003/api/newcustomermessage', {
+		const res = await fetch(`http://localhost:${PORT}/api/newcustomermessage`, {
 			method: 'post',
 			body: JSON.stringify({
 				name: messageData.name,

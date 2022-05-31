@@ -3,13 +3,11 @@ import styles from './Productpage.module.css'
 import React, { useState, Component } from 'react'
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
-import Product from '../../../../cool-fashion-database/api/products';
-
-const Products = require("Products");
-console.log(Products.generate());
 
 
 
+
+// npm i react-responsive-carousel
 //Lägg till en carousel bild med en <div> med en Img tag i
 const Productpage = () => {
 
@@ -27,9 +25,9 @@ const Productpage = () => {
           <h2>Productname</h2>
         <br />
         <br />
-        <p>{Product.desciption}</p>
+        <p></p>
             <p>Price: Price goes here</p>
-            <p>Stock: {Product.inStock}</p>
+            <p>Stock: True/false</p>
             <a className={styles.PPButton} href="">
                 Buy Now
             </a>

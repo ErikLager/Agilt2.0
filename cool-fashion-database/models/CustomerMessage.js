@@ -12,6 +12,10 @@ const CustomerMessageSchema = mongoose.Schema({
 	message: {
 		type: String,
 		required: true
+	},
+	timestamp: {
+		type: Number,
+		required: true
 	}
 })
 

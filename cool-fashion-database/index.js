@@ -1,18 +1,21 @@
 const express = require('express')
 const app = express()
 const cors = require('cors')
+const cookieParser = require("cookie-parser");
 const mongoose = require('mongoose')
 
 const productRouter = require('./api/products')
+const userRouter = require("./api/user");
 const customerMessageRouter = require('./api/customerMessages')
 
 require('dotenv').config()
 
-// Middleware
+app.use(cookieParser());
 app.use(cors())
 app.use(express.json())
 app.use('/api', productRouter)
 app.use('/api', customerMessageRouter)
+app.use("/api", userRouter);
 
 mongoose.connect(
 	process.env.MONGODB_URI,

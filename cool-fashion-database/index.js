@@ -7,6 +7,7 @@ const mongoose = require('mongoose')
 const productRouter = require('./api/products')
 const userRouter = require("./api/user");
 const customerMessageRouter = require('./api/customerMessages')
+const categoryRouter = require('./api/categories')
 
 require('dotenv').config()
 
@@ -16,6 +17,7 @@ app.use(express.json())
 app.use('/api', productRouter)
 app.use('/api', customerMessageRouter)
 app.use("/api", userRouter);
+app.use('/api', categoryRouter)
 
 mongoose.connect(
 	process.env.MONGODB_URI,

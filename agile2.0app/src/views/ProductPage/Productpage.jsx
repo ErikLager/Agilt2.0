@@ -5,6 +5,10 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 
 
+const GetProducts = async(id)=> {
+    const res = await fetch(`http://localhost:5002/api/getproducts/${id}`)
+    const Product = await res.json()
+}
 
 
 // npm i react-responsive-carousel
@@ -26,8 +30,8 @@ const Productpage = () => {
         <br />
         <br />
         <p></p>
-            <p>Price: Price goes here</p>
-            <p>Stock: True/false</p>
+            <p>Price: </p>
+            <p>Stock: </p>
             <a className={styles.PPButton} href="">
                 Buy Now
             </a>

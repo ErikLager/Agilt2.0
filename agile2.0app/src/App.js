@@ -5,6 +5,7 @@ import Homepage from './views/Homepage/Homepage'
 import Shop from './views/Shop'
 import Contactus from './views/Contactus'
 import AdminProductList from './views/AdminProductList';
+import AdminInbox from './views/AdminInbox/AdminInbox'
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path='sneakers' element={<Shop />} />
           <Route path='contact' element={<Contactus />} />
           <Route path='admin' element={<AdminProductList />} />
+          <Route path='admin/inbox' element={<AdminInbox />} />
         </Route>
       </Routes>
     </BrowserRouter>

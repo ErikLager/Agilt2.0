@@ -12,7 +12,26 @@ const ProductSchema = mongoose.Schema({
 	description: {
 		type: String,
 		required: true
+	},
+	pictures: [
+		{
+			type: String
+		}
+	],
+	categories: [
+		{
+			type: String
+		}
+	],
+	isFeatured: {
+		type: Boolean,
+		required: true
+	},
+	price: {
+		type: Number,
+		required: true
 	}
+
 })
 
 module.exports = mongoose.model('Product', ProductSchema)

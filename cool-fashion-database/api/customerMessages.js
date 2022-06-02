@@ -30,5 +30,20 @@ customerMessageRouter.post("/newcustomermessage", (req, res) => {
 	});
 });
 
+customerMessageRouter.get('/getcustomermessages', (req, res) => {
+	CustomerMessage.find({}, (err, documents) => {
+		if (err) {
+			res.status(500).json({
+				msg: {
+					msgBody: 'Oops! Error! Something went wrong while getting the messages.',
+					msgError: true
+				}
+			})
+		} else {
+			res.status(200).json({ customerMessages: documents })
+		}
+	})
+})
+
 
 module.exports = customerMessageRouter

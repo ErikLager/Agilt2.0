@@ -1,8 +1,14 @@
 .content{
-    width: 90%;
     margin: auto;
     box-sizing: border-box;
-    background-color: var(--BgColor);
+    background-color: #c1c1c1;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto auto;
+    column-gap: 10px;
+    row-gap: 15px;
+    justify-items: center;
+    align-items: center;
 }
 
 .prodlist{
@@ -11,22 +17,22 @@
 }
 
 .prodCard{
-    width: 22%;
+    width: 50%;
     margin: 1%;
     border: 1px solid black;
     text-decoration: none;
 }
 
-.prodCard p{
+.prodCardP{
     overflow: hidden;
     text-align: center;
     color: black;
 }
 
 .prodimg{
-    width: 50%;
-    margin-left: 25%;
-    margin-right: 25%;
+    height: 220px;
+    width: 100%;
+    object-fit: cover;
 }
 
 @media screen and (max-width: 900px) {

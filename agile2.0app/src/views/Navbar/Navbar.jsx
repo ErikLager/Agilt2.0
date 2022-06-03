@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import styles from './Navbar.module.css'
 import { useState } from 'react'
 import MenuOverlay from './MenuOverlay'
+import WishlistButton from '../../components/Button/WishlistButton/WishlistButton'
 import useWindowDimensions from '../../hooks/useWindowDimensions'
 const container = styles.container
 
@@ -25,6 +26,7 @@ const Navbar = () => {
 				</div>
 				<div className={styles.right}>
 					<button>Cart</button>
+					<WishlistButton/>
 					{ width < 720 && (
 						<button
 							className={styles.menuButton}

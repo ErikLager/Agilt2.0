@@ -7,6 +7,8 @@ const Login = () => {
 		password: ''
 	})
 	
+	const [authenticated, setAuthenticated] = useState(null)
+	
 	async function logIn(e) {
 		e.preventDefault()
 		const res = await fetch(`http://localhost:${process.env.REACT_APP_PORT}/api/login`, {
@@ -16,14 +18,11 @@ const Login = () => {
 				password: `${formData.password}`
 			}),
 			headers: {
-				"Content-Type": 'application/json'
+				"Content-Type": "application/json"
 			},
 		})
 		const data = await res.json()
 		console.log(data)
-	
-	
-		console.log('Hey man')
 		console.log(formData)
 	}
 	
@@ -36,11 +35,14 @@ const Login = () => {
 		console.log('Checking!')
 		const res = await fetch(`http://localhost:${process.env.REACT_APP_PORT}/api/authenticated`)
 		const data = await res.json()
-		console.log(data)
+		setAuthenticated(data)
 	}
 	
 	useEffect(() => {
-		checkAuthentication()
+		// checkAuthentication()
+		if (authenticated) {
+			console.log(authenticated)			
+		}
 	})
 	
 	return (

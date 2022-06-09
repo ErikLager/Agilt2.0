@@ -1,0 +1,28 @@
+.HomepageContainer {
+    background-color: #c1c1c1;
+    height: 100%;
+}
+
+.NewsList {
+    display: flex;
+    flex-wrap: wrap;
+    width: 70%;
+    margin: auto;
+    box-sizing: border-box;
+    
+}
+.featuredList{
+    display: flex;
+    flex-wrap: wrap;
+    width: 70%;
+    margin: auto;
+    box-sizing: border-box;
+}
+.Homepagetitel {
+    font-family: Serpentine;
+    text-align: center;
+    padding: 2%;
+}
+.HomepageContainer .card{
+    margin: 2rem;
+}

@@ -3,6 +3,7 @@ const app = express()
 const cors = require('cors')
 const cookieParser = require("cookie-parser");
 const mongoose = require('mongoose')
+const path = require('path')
 
 const productRouter = require('./api/products')
 const userRouter = require("./api/user");
@@ -15,8 +16,9 @@ app.use(cors())
 app.use(express.json())
 app.use('/api', productRouter)
 app.use('/api', customerMessageRouter)
-app.use("/api", userRouter);
+app.use("/api", userRouter)
 
+app.use(express.static(path.join(__dirname, "client/build")))
 
 mongoose.connect(
 	process.env.MONGODB_URI,

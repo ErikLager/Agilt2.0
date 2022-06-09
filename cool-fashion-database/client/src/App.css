@@ -1,0 +1,131 @@
+:root{
+  --BgColor: #c1c1c1;
+}
+
+* {
+ box-sizing: border-box; 
+}
+
+@font-face {
+  font-family: 'ApplePixel';
+  src: url('./fonts/ApplePixel.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Serpentine';
+  src: url('./fonts/Serpentine.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Serpentine-Bold';
+  src: url('./fonts/Serpentine-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Thunderstorm';
+  src: url('./fonts/Thunderstorm.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'AppleGaramond';
+  src: url('./fonts/AppleGaramond.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'AppleGaramond-Light';
+  src: url('./fonts/AppleGaramond-Light.ttf') format('truetype');
+}
+
+.App {
+  text-align: center;
+}
+
+.apple-text {
+  font-family: 'ApplePixel';
+}
+
+.serpentine {
+  font-family: 'Serpentine';
+}
+
+.serpentine-bold {
+  font-family: 'Serpentine-Bold';
+}
+
+.thunderstorm {
+  font-size: 2rem;
+  font-family: 'Thunderstorm';
+}
+
+.apple-garamond {
+  font-family: 'AppleGaramond';
+}
+
+.apple-garamond-light {
+  font-family: 'AppleGaramond-Light';
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+body {
+  width: 100%;
+}
+
+
+
+/* ---------------------Footer style--------------------- */
+footer{
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  background-color: var(--BgColor);
+}
+
+footer div{
+  text-align: center;
+}
+
+footer p{
+  padding: 1rem;
+  font-size: 1.3rem;
+}
+
+footer div div{
+  border: 1px solid orange;
+}
+
+footer .xs{
+  font-size: .8rem;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

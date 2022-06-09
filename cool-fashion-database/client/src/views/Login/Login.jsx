@@ -23,6 +23,7 @@ const Login = () => {
 		})
 		const data = await res.json()
 		console.log(data)
+		setAuthenticated(data)
 		console.log(formData)
 	}
 	
@@ -33,21 +34,42 @@ const Login = () => {
 	
 	async function checkAuthentication() {
 		console.log('Checking!')
-		const res = await fetch(`/api/authenticated`)
-		const data = await res.json()
-		setAuthenticated(data)
+		try {
+			const res = await fetch(`/api/authenticated`)
+			if (res.status !== 401) {
+				const data = await res.json()
+				setAuthenticated(data)
+			} else {
+				throw 'You are not logged in!'
+			}
+		} catch (error) {
+			console.error("Error: ", error);
+		}
+	}
+	
+	async function logOut() {
+		try {
+			const res = await fetch(`/api/logout`)
+			if (res.status !== 401) {
+				const data = await res.json()
+				console.log(data)
+				setAuthenticated(null)
+			} else {
+				throw "You need to be logged in in order to log out";
+			}
+		} catch (error) {
+			console.error("Error: ", error)
+		}
 	}
 	
 	useEffect(() => {
-		// checkAuthentication()
-		if (authenticated) {
-			console.log(authenticated)			
-		}
-	})
+		checkAuthentication()
+	}, [])
 	
 	return (
 		<div className={styles.container}>
 			<h1 className={styles.header}>Alright this is the admin login</h1>
+			{authenticated && <h2>YOU ARE LOGGED IN</h2>}
 			<form className={styles.form} onSubmit={logIn}>
 				<label>Username</label>
 				<input
@@ -71,8 +93,9 @@ const Login = () => {
 				>
 					Log In
 				</button>
-				<button onClick={() => checkAuthentication()}>check</button>
 			</form>
+			<button onClick={() => checkAuthentication()}>Check</button>
+			<button onClick={() => logOut()}>Log out</button>
 		</div>
 	)
 }

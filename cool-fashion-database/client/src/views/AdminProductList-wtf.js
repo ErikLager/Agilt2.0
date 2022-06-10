@@ -1,9 +1,11 @@
+import { Navigate } from 'react-router-dom'
 import "./AdminProductlist.css";
 import { useEffect, useState } from "react";
-
+import { checkAuthentication } from '../hooks/auth'
 
 const AdminProductList = () => {
-
+    const [authenticated, setAuthenticated] = useState(null)
+    const [waitingForAuth, setWaitingForAuth] = useState(true)
     const [newProduct, setNewProduct] = useState({});
 
     const [products, setProducts] = useState({});
@@ -19,6 +21,34 @@ const AdminProductList = () => {
             setNewProduct({ ...newProduct, [e.target.name]: e.target.value })
         }
     }
+    
+    async function checkAuthentication() {
+        console.log('Checking!')
+        try {
+            const res = await fetch(`/api/authenticated`)
+            if (res.status !== 401) {
+                const data = await res.json()
+                setAuthenticated(data)
+            } else {
+                setWaitingForAuth(false)
+                throw 'You are not logged in!'
+            }
+        } catch (error) {
+            console.error("Error: ", error);
+        }
+    }
+    
+    useEffect(() => {
+        checkAuthentication()
+    }, [])
+    
+    useEffect(() => {
+        if (authenticated) {
+            setWaitingForAuth(false)
+            console.log('checking auth')
+            console.log(authenticated)         
+        }
+    }, authenticated)
 
     async function addProdToDB(prodData) {
         const res = await fetch("http://localhost:5002/api/newproduct", {
@@ -57,8 +87,14 @@ const AdminProductList = () => {
 
     return (
         <>
-            <h1>List of all the products</h1>
-            <table>
+            {waitingForAuth && <p>Loading...</p>}
+            {!waitingForAuth && (
+                <div>
+                {!authenticated && <Navigate to='/' />}
+                {authenticated && (
+                <>
+                <h1>List of all the products</h1>
+                <table>
                 <thead>
                     <tr>
                         <th>
@@ -150,7 +186,11 @@ const AdminProductList = () => {
                 <button>Add new product</button>
 
             </form>
-        </>
+            </>
+        )}
+        </div>
+        )}
+    </>
     )
 };
 

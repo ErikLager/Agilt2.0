@@ -3,6 +3,7 @@ const app = express()
 const cors = require('cors')
 const cookieParser = require("cookie-parser");
 const mongoose = require('mongoose')
+const path = require('path')
 
 const productRouter = require('./api/products')
 const userRouter = require("./api/user");

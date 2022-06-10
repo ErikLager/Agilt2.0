@@ -1,0 +1,8 @@
+.WLButton{
+    border-left: 1px solid #fff;
+    border-top: 1px solid #fff;
+    border-right: 1px solid #383131;
+    border-bottom: 1px solid #383131;
+    padding: 3px 15px 3px 15px;
+    background: #ec8686;
+}

@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom'
 import styles from './Login.module.css'
 import { useEffect, useState } from 'react'
 
@@ -8,23 +9,31 @@ const Login = () => {
 	})
 	
 	const [authenticated, setAuthenticated] = useState(null)
+	let navigate = useNavigate()
 	
 	async function logIn(e) {
 		e.preventDefault()
-		const res = await fetch(`/api/login`, {
-			method: 'post',
-			body: JSON.stringify({
-				username: `${formData.username}`,
-				password: `${formData.password}`
-			}),
-			headers: {
-				"Content-Type": "application/json"
-			},
-		})
-		const data = await res.json()
-		console.log(data)
-		setAuthenticated(data)
-		console.log(formData)
+		try {
+			const res = await fetch(`/api/login`, {
+				method: 'post',
+				body: JSON.stringify({
+					username: `${formData.username}`,
+					password: `${formData.password}`
+				}),
+				headers: {
+					"Content-Type": "application/json"
+				},
+			})
+			if (res.status !== 401) {
+				const data = await res.json();
+				setAuthenticated(data)
+				navigate('/admin')
+			} else {
+				throw "Wrong username or password";
+			}
+		} catch (error) {
+			console.error("Error: ", error);
+		}
 	}
 	
 	function handleInput(e) {

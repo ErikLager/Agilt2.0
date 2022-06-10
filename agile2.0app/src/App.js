@@ -6,7 +6,7 @@ import Shop from './views/Shop'
 import Contactus from './views/Contactus'
 import AdminProductList from './views/AdminProductList';
 import AdminInbox from './views/AdminInbox/AdminInbox'
-import Login from './views/Login/Login'
+import AdminCreateCategory from './views/AdminCreateCategory/AdminCreateCategory'
 
 function App() {
   return (
@@ -18,7 +18,7 @@ function App() {
           <Route path='contact' element={<Contactus />} />
           <Route path='admin' element={<AdminProductList />} />
           <Route path='admin/inbox' element={<AdminInbox />} />
-          <Route path='login' element={<Login />} />
+          <Route path='admin/createcategory' element={<AdminCreateCategory />} />
         </Route>
       </Routes>
     </BrowserRouter>

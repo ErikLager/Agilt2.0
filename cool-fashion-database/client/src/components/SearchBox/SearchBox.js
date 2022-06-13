@@ -1,16 +1,17 @@
 import { useState, useEffect } from 'react'
 import styles from './Button.module.css'
 import { cleanUpInput, replaceSpecialCharacters } from '../../hooks/stringUtils'
+import { useNavigate } from 'react-router-dom'
 
 const SearchBox = ({ handleSubmit, placeholder }) => {
 	const [searchData, setSearchData] = useState('')
 	const [allProducts, setAllProducts] = useState([])
+	const navigate = useNavigate()
 	
 	const getProducts = async () => {
 			const res = await fetch('http://localhost:5002/api/getproducts')
 			const data = await res.json()
 			console.log(data.products)
-			
 			setAllProducts(data.products)
 	}
 	
@@ -37,11 +38,18 @@ const SearchBox = ({ handleSubmit, placeholder }) => {
 		return filteredArray;
 	}
 	
+	const navigateAway = (data) => {
+		console.log('hello')
+		navigate('/sneakers', {state: {
+			searchData,
+			data,
+		}})
+	}
+	
 	useEffect(() => {
-		if (allProducts.length > 0) {
-			const filteredArray = filterArray(searchData, allProducts)
-			console.log(filterArray(searchData, allProducts))
-		}
+		const filteredArray = filterArray(searchData, allProducts)
+		console.log(filterArray(searchData, allProducts))
+		navigateAway(filteredArray)
 	}, [allProducts])
 	
 	return (

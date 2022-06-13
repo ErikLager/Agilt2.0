@@ -9,10 +9,10 @@ const SearchBox = ({ handleSubmit, placeholder }) => {
 	const navigate = useNavigate()
 	
 	const getProducts = async () => {
-			const res = await fetch('http://localhost:5002/api/getproducts')
-			const data = await res.json()
-			console.log(data.products)
-			setAllProducts(data.products)
+		const res = await fetch('http://localhost:5002/api/getproducts')
+		const data = await res.json()
+		console.log(data.products)
+		setAllProducts(data.products)
 	}
 	
 	function onSubmit(e) {
@@ -47,9 +47,11 @@ const SearchBox = ({ handleSubmit, placeholder }) => {
 	}
 	
 	useEffect(() => {
-		const filteredArray = filterArray(searchData, allProducts)
-		console.log(filterArray(searchData, allProducts))
-		navigateAway(filteredArray)
+		if (searchData) {
+			const filteredArray = filterArray(searchData, allProducts)
+			console.log(filterArray(searchData, allProducts))
+			navigateAway(filteredArray)
+		}
 	}, [allProducts])
 	
 	return (

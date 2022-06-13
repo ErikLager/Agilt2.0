@@ -1,19 +1,42 @@
-import { Link } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import styles from './Productpage.module.css'
 import React, { useState, Component } from 'react'
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 
-const GetProducts = async(id)=> {
-    const res = await fetch(`http://localhost:5002/api/getproducts/${id}`)
-    const Product = await res.json()
-}
+
+
+
+const Productpage = () => {
+
+    const [product, setProduct] = useState({
+        productname: "",
+        description: "",
+        price: "",
+        pictures: [],
+        categories: "",
+        inStock: "",
+    });
+    const params = useParams();
+
+    useEffect(() => {
+        async function fetchProduct() {
+            const response = await fetch (`http://localhost:5002/api/getproducts/${params._id.toString()}`);
+
+            if (!response.ok) {
+                const message = `ERROR ERROR: ${response.statusText}`;
+                console.log(">>>>>>>>>",message);
+                return;
+            }
+        }
+        fetchProduct();
+        return;
+    }, [params._id]);
+
 
 
 // npm i react-responsive-carousel
 //Lägg till en carousel bild med en <div> med en Img tag i
-const Productpage = () => {
-
 	return (
 		<div className={styles.PPContainer}>
             <Carousel className={styles.PPCarousel}>
@@ -29,8 +52,8 @@ const Productpage = () => {
         <br />
         <br />
         <p></p>
-            <p>Price:</p>
-            <p>Stock: True/false</p>
+            <p>Price: </p>
+            <p>Stock: </p>
             <a className={styles.PPButton} href="">
                 Buy Now
             </a>

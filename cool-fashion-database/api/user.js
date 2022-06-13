@@ -11,7 +11,7 @@ require("dotenv").config();
 const signToken = (userId) => {
   return jwt.sign(
     {
-      iss: "ChristianDR",
+      iss: "coolFashion",
       sub: userId,
     },
     process.env.JWT_SECRET,
@@ -61,7 +61,7 @@ userRouter.post(
       // Setting a constant holding the JWT returned from our signedToken-funcion.
       const token = signToken(_id);
       // Setting a cookie in the browser named "access-token" containing the JWT held by the constant above.
-      res.cookie("access-token", token, { httpOnly: true, sameSite: true });
+      res.cookie("access-token", token, { httpOnly: false });
       res.status(200).json({
         isAuthenticated: true,
         user: { _id, username },

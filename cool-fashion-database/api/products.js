@@ -65,8 +65,9 @@ productRouter.get('/getproducts/:id', (req, res) => {
 
 productRouter.put('/updateproduct/:id', (req, res) => {
 	Product.findByIdAndUpdate(
-		req.params._id,
+		req.params.id,
 		{
+			_id: req.body._id,
 			name: req.body.name,
 			inStock: req.body.inStock,
 			description: req.body.description,

@@ -4,6 +4,8 @@ import { useState } from 'react'
 import MenuOverlay from './MenuOverlay'
 import WishlistButton from '../../components/Button/WishlistButton/WishlistButton'
 import useWindowDimensions from '../../hooks/useWindowDimensions'
+import SearchBox from '../../components/SearchBox/SearchBox'
+
 const container = styles.container
 
 
@@ -27,6 +29,7 @@ const Navbar = () => {
 				<div className={styles.right}>
 					<button>Cart</button>
 					<WishlistButton/>
+					<SearchBox placeholder='Search here boy' handleSubmit={(data) => console.log(data)} />
 					{ width < 720 && (
 						<button
 							className={styles.menuButton}

@@ -12,7 +12,7 @@ const AdminProductList = () => {
         category: '',
         inStock: false,
         isFeatured: false,
-        price: null,
+        price: '',
         pictures: []
     });
 
@@ -181,30 +181,14 @@ const AdminProductList = () => {
                 <table>
                 <thead>
                     <tr>
-                        <th>
-                            Id
-                        </th>
-                        <th>
-                            Name
-                        </th>
-                        <th>
-                            Description
-                        </th>
-                        <th>
-                            Category
-                        </th>
-                        <th>
-                            In Stock
-                        </th>
-                        <th>
-                            Featured
-                        </th>
-                        <th>
-                            Images
-                        </th>
-                        <th>
-                            Update
-                        </th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                        <th>Category</th>
+                        <th>In Stock</th>
+                        <th>Featured</th>
+                        <th>Images</th>
+                        <th>Update</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -215,9 +199,6 @@ const AdminProductList = () => {
                                 <>
                                 {selectedProduct._id === item._id && (
                                     <tr key={index} className="item selected-product">
-                                        <td>
-                                            {selectedProduct._id}
-                                        </td>
                                         <td>
                                             <input
                                                 onChange={handleTableInput}
@@ -232,6 +213,14 @@ const AdminProductList = () => {
                                                 onChange={handleTableInput}
                                                 defaultValue={selectedProduct.description}
                                                 name='description'
+                                            />
+                                        </td>
+                                        <td>
+                                            <input
+                                                type="text"
+                                                onChange={handleTableInput}
+                                                defaultValue={selectedProduct.price}
+                                                name='price'
                                             />
                                         </td>
                                         <td>
@@ -294,13 +283,13 @@ const AdminProductList = () => {
                                 {selectedProduct._id !== item._id && (
                                     <tr key={index} className="item">
                                         <td>
-                                            {item._id}
-                                        </td>
-                                        <td>
                                             <p>{item.name}</p>
                                         </td>
                                         <td>
                                             <p>{item.description}</p>
+                                        </td>
+                                        <td>
+                                            <p>{item.price}</p>
                                         </td>
                                         <td>
                                             <p>{item.category}</p>

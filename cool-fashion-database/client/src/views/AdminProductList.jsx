@@ -2,6 +2,7 @@ import { Navigate } from 'react-router-dom'
 import "./AdminProductlist.css";
 import { useEffect, useState } from "react";
 import { checkAuthentication } from '../hooks/auth'
+import AdminCreateCategory from './AdminCreateCategory/AdminCreateCategory'
 
 const AdminProductList = () => {
     const [authenticated, setAuthenticated] = useState(null)
@@ -384,6 +385,7 @@ const AdminProductList = () => {
         )}
         </div>
         )}
+        <AdminCreateCategory />
     </>
     )
 };

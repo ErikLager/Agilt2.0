@@ -6,14 +6,23 @@ import { checkAuthentication } from '../hooks/auth'
 const AdminProductList = () => {
     const [authenticated, setAuthenticated] = useState(null)
     const [waitingForAuth, setWaitingForAuth] = useState(true)
-    const [newProduct, setNewProduct] = useState({});
+    const [newProduct, setNewProduct] = useState({
+        name: '',
+        description: '',
+        category: '',
+        inStock: false,
+        isFeatured: false,
+        price: null,
+        pictures: []
+    });
 
     const [products, setProducts] = useState({});
     const [productToUpdate, setProductToUpdate] = useState({})
     const [categories, setCategories] = useState([])
-    const [selectedProduct, setSelectedProduct] = useState('')
+    const [selectedProduct, setSelectedProduct] = useState({})
 
     function handleInput(e) {
+        console.log(e)
         if (e.target.name === "pictures") {
             setNewProduct({ ...newProduct, [e.target.name]: [e.target.value] })
         }
@@ -27,13 +36,13 @@ const AdminProductList = () => {
     
     function handleTableInput(e) {
         if (e.target.name === "pictures") {
-            setProductToUpdate({ ...newProduct, [e.target.name]: [e.target.value] })
+            setSelectedProduct({ ...selectedProduct, [e.target.name]: [e.target.value] })
         }
         if (e.target.type === "checkbox") {
-            setProductToUpdate({ ...newProduct, [e.target.name]: e.target.checked })
+            setSelectedProduct({ ...selectedProduct, [e.target.name]: e.target.checked })
         }
         else {
-            setProductToUpdate({ ...newProduct, [e.target.name]: e.target.value })
+            setSelectedProduct({ ...selectedProduct, [e.target.name]: e.target.value })
         }
     }
     
@@ -82,6 +91,7 @@ const AdminProductList = () => {
     }, authenticated)
 
     async function addProdToDB(prodData) {
+        console.log(prodData)
         const res = await fetch("http://localhost:5002/api/newproduct", {
             method: "POST",
             body: JSON.stringify({
@@ -90,7 +100,7 @@ const AdminProductList = () => {
                 description: prodData.description,
                 price: prodData.price,
                 pictures: prodData.pictures,
-                categories: prodData.categories,
+                category: prodData.category,
                 isFeatured: prodData.isFeatured,
             }),
             headers: {
@@ -98,14 +108,64 @@ const AdminProductList = () => {
             },
         });
         const data = await res.json();
+        reloadPage()
+    }
+    
+    async function deleteProduct(prodData) {
+        const res = await fetch(`http://localhost:5002/api/deleteproduct/${prodData._id}`, {
+            method: 'DELETE',
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        const data = await res.json()
+        console.log(data)
+        reloadPage()
+    }
+    
+    async function updateProductInDB(prodData) {
+        console.log(prodData)
+        const res = await fetch(`http://localhost:5002/api/updateproduct/${prodData._id}`, {
+            method: 'PUT',
+            body: JSON.stringify({
+                _id: prodData._id,
+                name: prodData.name,
+                inStock: prodData.inStock,
+                description: prodData.description,
+                price: prodData.price,
+                pictures: prodData.pictures,
+                category: prodData.category,
+                isFeatured: prodData.isFeatured,
+            }),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        const data = await res.json()
+        reloadPage()
+    }
+    
+    function reloadPage() {
+        setSelectedProduct({})
+        setNewProduct({
+            name: '',
+            description: '',
+            category: '',
+            inStock: false,
+            isFeatured: false,
+            price: '',
+            pictures: []
+        })
+        getProducts()
     }
 
     const addnewproduct = (e) => {
         e.preventDefault();
         addProdToDB(newProduct);
     }
+    
 
-    const getProduct = async () => {
+    const getProducts = async () => {
         const res = await fetch("http://localhost:5002/api/getproducts");
         const productlist2 = await res.json();
         console.log("-------------get all products-------------");
@@ -113,14 +173,14 @@ const AdminProductList = () => {
     }
 
     useEffect(() => {
-        getProduct();
+        getProducts();
     }, [])
 
     return (
         <>
             {waitingForAuth && <p>Loading...</p>}
             {!waitingForAuth && (
-                <div>
+                <div style={{ padding: '1rem'}}>
                 {!authenticated && <Navigate to='/' />}
                 {(authenticated && categories.categories.length > 0) && (
                 <>
@@ -166,24 +226,37 @@ const AdminProductList = () => {
                                             {selectedProduct._id}
                                         </td>
                                         <td>
-                                            <input type="text" defaultValue={selectedProduct.name} />
+                                            <input
+                                                onChange={handleTableInput}
+                                                type="text"
+                                                defaultValue={selectedProduct.name}
+                                                name='name'
+                                            />
                                         </td>
                                         <td>
-                                            <input type="text" defaultValue={selectedProduct.description} />
+                                            <input
+                                                type="text"
+                                                onChange={handleTableInput}
+                                                defaultValue={selectedProduct.description}
+                                                name='description'
+                                            />
                                         </td>
                                         <td>
-                                            <p>{selectedProduct.categories}</p>
-                                            <select name="category" id="category">
+                                            <select
+                                                name="category"
+                                                id="category"
+                                                onChange={handleTableInput}
+                                            >
                                                 <option value="">--Please choose an option--</option>
                                                 {categories.categories.map(category => {
                                                     return (
                                                         <>
-                                                            {category.name === selectedProduct.categories && (
+                                                            {category.name === selectedProduct.category && (
                                                                 <option key={category._id} value={category.name} selected>
                                                                     {category.name}
                                                                 </option>        
                                                             )}
-                                                            {category.name !== selectedProduct.categories && (
+                                                            {category.name !== selectedProduct.category && (
                                                                 <option key={category._id} value={category.name}>
                                                                     {category.name}
                                                                 </option>     
@@ -209,7 +282,19 @@ const AdminProductList = () => {
                                             />
                                         </td>
                                         <td>
-                                            <button onClick={() => setSelectedProduct(item._id)}>Update</button>
+                                            <button
+                                                style={{backgroundColor: 'lightgreen'}}
+                                                onClick={() => updateProductInDB(selectedProduct)}
+                                            >
+                                                Save
+                                            </button>
+                                            <button
+                                                style={{backgroundColor: 'red', color: 'white'}}
+                                                onClick={() => deleteProduct(selectedProduct)}
+                                            >
+                                                Delete
+                                            </button>
+                                            
                                         </td>
                                     </tr>
                                 )}
@@ -225,7 +310,7 @@ const AdminProductList = () => {
                                             <p>{item.description}</p>
                                         </td>
                                         <td>
-                                            <p>{item.categories}</p>
+                                            <p>{item.category}</p>
                                         </td>
                                         <td>
                                             <input type="checkbox" defaultChecked={item.inStock} disabled />
@@ -252,22 +337,63 @@ const AdminProductList = () => {
 
                 </tbody>
             </table>
-
+            <h3>Add new product:</h3>
             <form onSubmit={addnewproduct}>
                 <label>name</label>
-                <input onChange={handleInput} name="name" /><br />
+                <input
+                    onChange={handleInput}
+                    name="name"
+                    value={newProduct.name}
+                /><br />
                 <label>description</label>
-                <input onChange={handleInput} name="description" /><br />
+                <input
+                    onChange={handleInput}
+                    name="description"
+                    value={newProduct.description}
+                /><br />
                 <label>Category</label>
-                <input onChange={handleInput} name="categories" /><br />
+                <select
+                    name="category"
+                    id="category"
+                    onChange={handleInput}
+                >
+                    <option value='' selected disabled>--Please choose a category--</option>
+                    {categories.categories.map(category => {
+                        return (
+                            <>
+                                <option key={category._id} value={category.name}>
+                                    {category.name}
+                                </option>
+                            </>
+                        )
+                    })}
+                </select><br />
                 <label>in Stock</label>
-                <input onChange={handleInput} name="inStock" type="checkbox" /><br />
+                <input
+                    onChange={handleInput}
+                    name="inStock"
+                    type="checkbox"
+                    checked={newProduct.inStock}
+                /><br />
                 <label>featured</label>
-                <input onChange={handleInput} name="isFeatured" type="checkbox" /><br />
+                <input
+                    onChange={handleInput}
+                    name="isFeatured"
+                    type="checkbox"
+                    checked={newProduct.isFeatured}
+                /><br />
                 <label>Price</label>
-                <input onChange={handleInput} name="price" /><br />
+                <input
+                    onChange={handleInput}
+                    name="price"
+                    value={newProduct.price}
+                /><br />
                 <label>images</label>
-                <input onChange={handleInput} name="pictures" /><br />
+                <input
+                    onChange={handleInput}
+                    name="pictures"
+                    value={newProduct.pictures}
+                /><br />
 
                 <button>Add new product</button>
 

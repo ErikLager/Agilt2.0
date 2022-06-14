@@ -11,7 +11,7 @@ productRouter.post("/newproduct", (req, res) => {
 		description: req.body.description,
 		price: req.body.price,
 		pictures: req.body.pictures,
-		categories: req.body.categories,
+		category: req.body.category,
 		isFeatured: req.body.isFeatured,
 	});
 	newProduct.save((err) => {
@@ -48,15 +48,19 @@ productRouter.get('/getproducts', (req, res) => {
 	})
 })
 
-productRouter.put('/updateproduct/:id', (req, res) => {
+productRouter.put('/updateproduct/:_id', (req, res) => {
 	Product.findByIdAndUpdate(
-		req.params.id,
+		req.params._id,
 		{
 			name: req.body.name,
 			inStock: req.body.inStock,
-			description: req.body.description
+			description: req.body.description,
+			price: req.body.price,
+			pictures: req.body.pictures,
+			category: req.body.category,
+			isFeatured: req.body.isFeatured,
 		},
-		(err) => {
+		(err, documents) => {
 			if (err) {
 				res.status(500).json({
 					msg: {
@@ -68,7 +72,8 @@ productRouter.put('/updateproduct/:id', (req, res) => {
 				res.status(200).json({
 					msg: {
 						msgBody: 'Yes sir! Product was updated.',
-						msgError: false
+						msgError: false,
+						data: documents
 					}
 				})
 			}

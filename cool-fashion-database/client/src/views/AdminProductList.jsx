@@ -179,7 +179,7 @@ const AdminProductList = () => {
             {!waitingForAuth && (
                 <div style={{ padding: '1rem'}}>
                 {!authenticated && <Navigate to='/' />}
-                {(authenticated && categories.categories.length > 0) && (
+                {(authenticated && categories.categories) && (
                 <>
                 <h1>List of all the products</h1>
                 <table>

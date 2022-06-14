@@ -1,5 +1,9 @@
 import styles from "./ProdCard.module.css"
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import WishlistButton from "./Button/WishlistButton/WishlistButton";
+
+
 
 
 
@@ -19,16 +23,18 @@ const ProductCard = () => {
 
     fetchAllProducts();
 },[]);
-console.log("Products utanför",products);
+
+
     return (
         <>
         <div class={styles.content}>
             { products.map((product) => (
-                <a href="#" className={styles.prodCard} key={product.id}>
+                <Link to={`/${product._id}`} className={styles.prodCard}>
                 <img className={styles.prodimg} src={product.pictures[0]} />
                 <p className={styles.prodCardP}>{product.name}</p>
-            </a>
+            </Link>
             ))}
+            
             </div>
         </>
     )

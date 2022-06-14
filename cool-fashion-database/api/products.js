@@ -48,6 +48,21 @@ productRouter.get('/getproducts', (req, res) => {
 	})
 })
 
+productRouter.get('/getproducts/:id', (req, res) => {
+	Product.findById((req.params.id), (err, documents) => {
+		if (err) {
+			res.status(500).json({
+				msg: {
+					msgBody: 'Oops! Error! Something went wrong while getting the product by id.', err,
+					msgError: true 
+				}
+			})
+		} else {
+			res.status(200).json(documents)
+		}
+	})
+})
+
 productRouter.put('/updateproduct/:id', (req, res) => {
 	Product.findByIdAndUpdate(
 		req.params.id,

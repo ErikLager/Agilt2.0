@@ -9,7 +9,6 @@ const Homepage = () => {
     <>
       <main className={styles.container}>
         <h2 className={styles.title}>Hello there!</h2>
-        <Productpage/>
         <HomepageContent />
       </main>
     </>

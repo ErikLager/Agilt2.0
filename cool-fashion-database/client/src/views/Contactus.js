@@ -19,7 +19,7 @@ const Contactus = () => {
 	
 	async function postMessage(messageData) {
 		console.log(messageData)
-		const res = await fetch(`http://localhost:${PORT}/api/newcustomermessage`, {
+		const res = await fetch(`http://localhost:5002/api/newcustomermessage`, {
 			method: 'post',
 			body: JSON.stringify({
 				name: messageData.name,

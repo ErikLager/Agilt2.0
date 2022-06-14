@@ -120,6 +120,8 @@ const AdminProductList = () => {
     }
     
     async function updateProductInDB(prodData) {
+        console.log('Here')
+        console.log(prodData)
         const res = await fetch(`http://localhost:5002/api/updateproduct/${prodData._id}`, {
             method: 'PUT',
             body: JSON.stringify({
@@ -137,6 +139,7 @@ const AdminProductList = () => {
             }
         })
         const data = await res.json()
+        console.log(data)
         reloadPage()
     }
     
@@ -250,14 +253,28 @@ const AdminProductList = () => {
                                             </select>
                                         </td>
                                         <td>
-                                            <input type="checkbox" defaultChecked={item.inStock} />
+                                            <input
+                                                type="checkbox"
+                                                defaultChecked={item.inStock}
+                                                onChange={handleTableInput}
+                                                name='inStock'
+                                            />
                                         </td>
                                         <td>
-                                            <input type="checkbox" defaultChecked={item.isFeatured} />
+                                            <input
+                                                type="checkbox"
+                                                defaultChecked={item.isFeatured}
+                                                onChange={handleTableInput}
+                                                name='isFeatured'
+                                            />
                                         </td>
                                         <td>
-                                            <input type="text" rows="4" defaultValue=
-                                                {
+                                            <input
+                                                name='pictures'
+                                                onChange={handleTableInput}
+                                                type="text"
+                                                rows="4"
+                                                defaultValue= {
                                                     item.pictures.map((item) => {
                                                         return `${item} \n`
                                                     })

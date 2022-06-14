@@ -2,6 +2,7 @@ import styles from './AdminCreateCategory.module.css'
 import { useEffect, useState } from 'react'
 
 const AdminCreateCategory = () => {
+	const PORT = process.env.REACT_APP_PORT
 	const [postWasSent, setPostWasSent] = useState(false)
 	const [postError, setPostError] = useState(false)
 	
@@ -18,7 +19,7 @@ const AdminCreateCategory = () => {
 	
 	async function postCategory(categoryData) {
 		console.log(categoryData)
-		const res = await fetch(`http://localhost:5002/api/newcategory`, {
+		const res = await fetch(`http://localhost:${PORT}/api/newcategory`, {
 			method: 'post',
 			body: JSON.stringify({
 				name: categoryData.name
@@ -29,7 +30,7 @@ const AdminCreateCategory = () => {
 		})
 		const data = await res.json()
 		if (!data.msg.msgError) {
-			console.log('It is cool bro, new category added!')
+			console.log('it is cool bro')
 			setPostWasSent(true)
 		} else {
 			setPostError(true)

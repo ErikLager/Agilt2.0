@@ -6,11 +6,9 @@ const Footer = () => {
         <>
             <footer>
                 <div>
-                    <div style={{border: 'none', marginBottom: '2rem'}}>
+                    <p>
                         <Link to='/contact'>Contact us</Link>
-                        <Link to='/admin' style={{marginLeft: '1rem'}}>Admin</Link>
-                        <Link to='/login' style={{marginLeft: '1rem'}}>Log in</Link>
-                    </div>
+                    </p>
                     <hr />
                     <p className="xs">
                         Copright© Erik Lagergren, Oscar Niklasson, Jacob Reinikainen Lindström

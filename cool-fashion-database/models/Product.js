@@ -17,7 +17,7 @@ const ProductSchema = mongoose.Schema({
 			type: String
 		}
 	],
-	categories:{
+	category:{
 		type: String
 	},
 	isFeatured: {

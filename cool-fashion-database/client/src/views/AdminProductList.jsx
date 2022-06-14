@@ -1,4 +1,4 @@
-import { Navigate } from 'react-router-dom'
+import { Navigate, Link } from 'react-router-dom'
 import "./AdminProductlist.css";
 import { useEffect, useState } from "react";
 import { checkAuthentication } from '../hooks/auth'
@@ -174,7 +174,11 @@ const AdminProductList = () => {
     }, [])
 
     return (
-        <>
+        <>  
+            <div style={{margin: '1rem', padding: '1rem', backgroundColor: 'lightgray', color: 'white'}}>
+                <h1>Welcome to the admin page</h1>
+                <Link to='/admin/inbox'>Inbox</Link>     
+            </div>
             {waitingForAuth && <p>Loading...</p>}
             {!waitingForAuth && (
                 <div style={{ padding: '1rem'}}>

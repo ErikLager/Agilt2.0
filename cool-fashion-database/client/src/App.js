@@ -8,6 +8,7 @@ import AdminProductList from './views/AdminProductList';
 import AdminInbox from './views/AdminInbox/AdminInbox'
 import Login from './views/Login/Login'
 import AdminCreateCategory from './views/AdminCreateCategory/AdminCreateCategory'
+import Productpage from './views/ProductPage/Productpage';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path='admin/inbox' element={<AdminInbox />} />
           <Route path='admin/createcategory' element={<AdminCreateCategory />} />
           <Route path='login' element={<Login />} />
+          <Route path="/:id" element={<Productpage />} />
         </Route>
       </Routes>
     </BrowserRouter>

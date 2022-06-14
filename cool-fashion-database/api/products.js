@@ -4,7 +4,7 @@ const Product = require("../models/Product")
 
 productRouter.post("/newproduct", (req, res) => {
 	console.log("Product to add: ", req.body);
-	
+
 	const newProduct = new Product({
 		name: req.body.name,
 		inStock: req.body.inStock,
@@ -48,7 +48,22 @@ productRouter.get('/getproducts', (req, res) => {
 	})
 })
 
-productRouter.put('/updateproduct/:_id', (req, res) => {
+productRouter.get('/getproducts/:id', (req, res) => {
+	Product.findById((req.params.id), (err, documents) => {
+		if (err) {
+			res.status(500).json({
+				msg: {
+					msgBody: 'Oops! Error! Something went wrong while getting the product by id.', err,
+					msgError: true
+				}
+			})
+		} else {
+			res.status(200).json(documents)
+		}
+	})
+})
+
+productRouter.put('/updateproduct/:id', (req, res) => {
 	Product.findByIdAndUpdate(
 		req.params._id,
 		{

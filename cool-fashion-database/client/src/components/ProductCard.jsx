@@ -1,6 +1,8 @@
 import styles from "./ProdCard.module.css"
 import { useEffect, useState } from "react";
-import { useLocation } from 'react-router-dom'
+import { Link, useLocation } from "react-router-dom";
+import WishlistButton from "./Button/WishlistButton/WishlistButton";
+
 
 const ProductCard = ({ searchResults }) => {
   const url = 'http://localhost:5002/api/getproducts';
@@ -28,10 +30,10 @@ const ProductCard = ({ searchResults }) => {
       <>
         <div class={styles.content}>
           { products.map((product) => (
-            <a href="#" className={styles.prodCard} key={product.id}>
+            <Link to={`/${product._id}`} className={styles.prodCard} key={product.id}>
               <img className={styles.prodimg} src={product.pictures[0]} />
               <p className={styles.prodCardP}>{product.name}</p>
-            </a>
+            </Link>
           ))}
         </div>
       </>
@@ -41,10 +43,10 @@ const ProductCard = ({ searchResults }) => {
         <p style={{padding: '1rem'}}>You searched for: {location.state.searchData}</p>
         <div class={styles.content}>
           { location.state.data.map((product) => (
-            <a href="#" className={styles.prodCard} key={product.id}>
+            <Link to={`/${product._id}`} className={styles.prodCard} key={product.id}>
               <img className={styles.prodimg} src={product.pictures[0]} />
               <p className={styles.prodCardP}>{product.name}</p>
-            </a>
+            </Link>
           ))}
         </div>
       </>

@@ -9,6 +9,9 @@ const AdminProductList = () => {
     const [newProduct, setNewProduct] = useState({});
 
     const [products, setProducts] = useState({});
+    const [productToUpdate, setProductToUpdate] = useState({})
+    const [categories, setCategories] = useState([])
+    const [selectedProduct, setSelectedProduct] = useState('')
 
     function handleInput(e) {
         if (e.target.name === "pictures") {
@@ -19,6 +22,18 @@ const AdminProductList = () => {
         }
         else {
             setNewProduct({ ...newProduct, [e.target.name]: e.target.value })
+        }
+    }
+    
+    function handleTableInput(e) {
+        if (e.target.name === "pictures") {
+            setProductToUpdate({ ...newProduct, [e.target.name]: [e.target.value] })
+        }
+        if (e.target.type === "checkbox") {
+            setProductToUpdate({ ...newProduct, [e.target.name]: e.target.checked })
+        }
+        else {
+            setProductToUpdate({ ...newProduct, [e.target.name]: e.target.value })
         }
     }
     
@@ -38,8 +53,24 @@ const AdminProductList = () => {
         }
     }
     
+    async function getCategories() {
+        try {
+            const res = await fetch('/api/getcategories')
+            if (res.status !== 401) {
+                const data = await res.json()
+                setCategories(data)
+                console.log(data)
+            } else {
+                throw 'Could not fetch categories!'
+            }
+        } catch(error) {
+            console.error('Error: ', error)
+        }
+    }
+    
     useEffect(() => {
         checkAuthentication()
+        getCategories()
     }, [])
     
     useEffect(() => {
@@ -91,7 +122,7 @@ const AdminProductList = () => {
             {!waitingForAuth && (
                 <div>
                 {!authenticated && <Navigate to='/' />}
-                {authenticated && (
+                {(authenticated && categories.categories.length > 0) && (
                 <>
                 <h1>List of all the products</h1>
                 <table>
@@ -128,38 +159,93 @@ const AdminProductList = () => {
                     {products.products && (
                         products.products.map((item, index) => {
                             return (
-                                <tr key={index} className="item">
-                                    <td>
-                                        {item._id}
-                                    </td>
-                                    <td>
-                                        <input type="text" defaultValue={item.name} />
-                                    </td>
-                                    <td>
-                                        <input type="text" defaultValue={item.description} />
-                                    </td>
-                                    <td>
-                                        <input type="text" defaultValue={item.categories} />
-                                    </td>
-                                    <td>
-                                        <input type="checkbox" defaultChecked={item.inStock} />
-                                    </td>
-                                    <td>
-                                        <input type="checkbox" defaultChecked={item.isFeatured} />
-                                    </td>
-                                    <td>
-                                        <input type="text" rows="4" defaultValue=
-                                            {
-                                                item.pictures.map((item) => {
-                                                    return `${item} \n`
-                                                })
-                                            }
-                                        />
-                                    </td>
-                                    <td>
-                                        <button>Update</button>
-                                    </td>
-                                </tr>
+                                <>
+                                {selectedProduct._id === item._id && (
+                                    <tr key={index} className="item selected-product">
+                                        <td>
+                                            {selectedProduct._id}
+                                        </td>
+                                        <td>
+                                            <input type="text" defaultValue={selectedProduct.name} />
+                                        </td>
+                                        <td>
+                                            <input type="text" defaultValue={selectedProduct.description} />
+                                        </td>
+                                        <td>
+                                            <p>{selectedProduct.categories}</p>
+                                            <select name="category" id="category">
+                                                <option value="">--Please choose an option--</option>
+                                                {categories.categories.map(category => {
+                                                    return (
+                                                        <>
+                                                            {category.name === selectedProduct.categories && (
+                                                                <option key={category._id} value={category.name} selected>
+                                                                    {category.name}
+                                                                </option>        
+                                                            )}
+                                                            {category.name !== selectedProduct.categories && (
+                                                                <option key={category._id} value={category.name}>
+                                                                    {category.name}
+                                                                </option>     
+                                                            )}
+                                                        </>
+                                                    )
+                                                })}
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <input type="checkbox" defaultChecked={item.inStock} />
+                                        </td>
+                                        <td>
+                                            <input type="checkbox" defaultChecked={item.isFeatured} />
+                                        </td>
+                                        <td>
+                                            <input type="text" rows="4" defaultValue=
+                                                {
+                                                    item.pictures.map((item) => {
+                                                        return `${item} \n`
+                                                    })
+                                                }
+                                            />
+                                        </td>
+                                        <td>
+                                            <button onClick={() => setSelectedProduct(item._id)}>Update</button>
+                                        </td>
+                                    </tr>
+                                )}
+                                {selectedProduct._id !== item._id && (
+                                    <tr key={index} className="item">
+                                        <td>
+                                            {item._id}
+                                        </td>
+                                        <td>
+                                            <p>{item.name}</p>
+                                        </td>
+                                        <td>
+                                            <p>{item.description}</p>
+                                        </td>
+                                        <td>
+                                            <p>{item.categories}</p>
+                                        </td>
+                                        <td>
+                                            <input type="checkbox" defaultChecked={item.inStock} disabled />
+                                        </td>
+                                        <td>
+                                            <input type="checkbox" defaultChecked={item.isFeatured} disabled />
+                                        </td>
+                                        <td>
+                                                {
+                                                    item.pictures.map((item) => {
+                                                        return <span className='product-list-images-text'>image </span>
+                                                    })
+                                                }
+                                        </td>
+                                        <td>
+                                            <button onClick={() => setSelectedProduct(item)}>Update</button>
+                                        </td>
+                                    </tr>
+                                )}
+                                    </>
                             )
                         })
                     )}

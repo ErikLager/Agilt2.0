@@ -22,7 +22,6 @@ const AdminProductList = () => {
     const [selectedProduct, setSelectedProduct] = useState({})
 
     function handleInput(e) {
-        console.log(e)
         if (e.target.name === "pictures") {
             setNewProduct({ ...newProduct, [e.target.name]: [e.target.value] })
         }
@@ -47,7 +46,6 @@ const AdminProductList = () => {
     }
     
     async function checkAuthentication() {
-        console.log('Checking!')
         try {
             const res = await fetch(`/api/authenticated`)
             if (res.status !== 401) {
@@ -84,14 +82,11 @@ const AdminProductList = () => {
     
     useEffect(() => {
         if (authenticated) {
-            setWaitingForAuth(false)
-            console.log('checking auth')
-            console.log(authenticated)         
+            setWaitingForAuth(false)      
         }
     }, authenticated)
 
     async function addProdToDB(prodData) {
-        console.log(prodData)
         const res = await fetch("http://localhost:5002/api/newproduct", {
             method: "POST",
             body: JSON.stringify({
@@ -124,7 +119,6 @@ const AdminProductList = () => {
     }
     
     async function updateProductInDB(prodData) {
-        console.log(prodData)
         const res = await fetch(`http://localhost:5002/api/updateproduct/${prodData._id}`, {
             method: 'PUT',
             body: JSON.stringify({
@@ -168,7 +162,6 @@ const AdminProductList = () => {
     const getProducts = async () => {
         const res = await fetch("http://localhost:5002/api/getproducts");
         const productlist2 = await res.json();
-        console.log("-------------get all products-------------");
         setProducts(productlist2);
     }
 

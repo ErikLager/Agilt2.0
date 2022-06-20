@@ -9,6 +9,7 @@ const productRouter = require('./api/products')
 const userRouter = require("./api/user");
 const customerMessageRouter = require('./api/customerMessages')
 const categoryRouter = require('./api/categories')
+const orderRouter = require("./api/order")
 
 require('dotenv').config()
 
@@ -19,6 +20,8 @@ app.use('/api', productRouter)
 app.use('/api', customerMessageRouter)
 app.use("/api", userRouter);
 app.use('/api', categoryRouter)
+app.use('/api', orderRouter)
+
 
 mongoose.connect(
 	process.env.MONGODB_URI,

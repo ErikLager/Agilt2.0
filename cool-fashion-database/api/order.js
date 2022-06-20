@@ -3,6 +3,7 @@ const passport = require("passport");
 const orderRouter = express.Router();
 const Order = require("../models/Order");
 const User = require("../models/User");
+const { orderFailed, orderConfirmed } = require("../services/emailService");
 
 
 // Add a new Order - anyone
@@ -19,6 +20,7 @@ orderRouter.post("/neworder", (req, res) => {
                     }
                 }
             );
+            orderFailed(req.body);
         }else{
             res.status(200).json({
                 message:{
@@ -26,9 +28,11 @@ orderRouter.post("/neworder", (req, res) => {
                     msgError: false
                 }
             });
+            orderConfirmed(req.body);
         };
     });
 });
+
 
 
 // Get all orders - Admin

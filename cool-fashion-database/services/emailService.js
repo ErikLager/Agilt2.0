@@ -22,4 +22,24 @@ const orderConfirmed = (orderInfo) => {
     });
 }
 
+const orderFailed = (orderInfo) => {
+    sgMail.setApiKey(process.env.SENDGRID_KEY);
+    const msg = {
+        to:`${orderInfo.email}`,
+        from: "oscar.niklasson941@gmail.com",
+        subject: "Order Failed",
+        text: "FAILED",
+        html: `FAILED`,
+    };
+    sgMail
+    .send(msg)
+    .then(() => {
+        console.log("Email sent");
+    })
+    .catch((error) => {
+        console.error(error);
+    });
+}
+
+module.exports = { orderFailed };
 module.exports = { orderConfirmed };

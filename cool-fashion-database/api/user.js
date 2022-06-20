@@ -99,6 +99,47 @@ userRouter.get(
   }
 )
 
+
+userRouter.put(
+  '/updateuser/:id',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    User.findByIdAndUpdate(
+      req.params.id,
+      {
+        username: req.body.name,
+        password: req.body.password
+      },
+      (err) => {
+        if (err) {
+          res.status(500).json({
+            msg: {
+              msgBody: 'Oh no! An error happened while updating user data.',
+              msgError: true
+            }
+          })
+        } else {
+          const { username, password } = req.body;
+          const newUser = new User({ username, password });
+          newUser.save((err, documents) => {
+            if (err) {
+              res
+                .status(500)
+                .json({ msg: { msgBody: "Fudge! An error occured...", msgError: true } });
+            } else {
+              res.status(201).json({
+                msg: "Wiii!! User successfully updated",
+                data: documents
+              });
+            }
+          })
+        }
+      }
+    )
+  }
+)
+
+
 userRouter.get(
   "/logout",
   passport.authenticate("jwt", { session: false }),

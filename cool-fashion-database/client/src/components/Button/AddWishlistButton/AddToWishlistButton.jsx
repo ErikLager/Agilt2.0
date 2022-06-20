@@ -1,6 +1,6 @@
 import styles from './WishlistButton.modules.css'
 
-const WishlistButton = ({ onClick }) => {
+const AddToWishlistButton = ({ onClick }) => {
 	
 	return (
 		<a
@@ -8,9 +8,9 @@ const WishlistButton = ({ onClick }) => {
             className='WLButton'
 			onClick={onClick}
 		>
-           &#x2764; Wishlist &#x2764;
+           &#x2764; Add To Wishlist &#x2764;
 		</a>
 	)
 }
 
-export default WishlistButton;
+export default AddToWishlistButton;

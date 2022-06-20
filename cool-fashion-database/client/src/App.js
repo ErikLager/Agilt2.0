@@ -8,6 +8,7 @@ import AdminProductList from './views/AdminProductList';
 import AdminInbox from './views/AdminInbox/AdminInbox'
 import Login from './views/Login/Login'
 import Productpage from './views/ProductPage/Productpage';
+import Cart from './views/Cart/Cart';
 
 function App() {
   return (

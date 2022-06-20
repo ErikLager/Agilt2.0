@@ -21,9 +21,7 @@ const ProductCard = ({ searchResults }) => {
     }
     fetchAllProducts();
   },[]);
-  
-  console.log("Products utanför", products);
-  
+    
   return (
     <>
     {!location.state && (

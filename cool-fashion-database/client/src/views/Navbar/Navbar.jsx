@@ -27,7 +27,7 @@ const Navbar = () => {
 						)}
 				</div>
 				<div className={styles.right}>
-					<button>Cart</button>
+					<Link to='/cart'>Cart</Link>
 					<WishlistButton/>
 					<SearchBox placeholder='Search here boy' handleSubmit={(data) => console.log(data)} />
 					{ width < 720 && (

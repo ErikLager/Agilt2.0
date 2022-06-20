@@ -5,6 +5,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import AddToWishlistButton from '../../components/Button/AddWishlistButton/AddToWishlistButton';
 import { CartContext } from '../Cart/CartContext';
+import Button from '../../components/Button/Button'
 
 
 
@@ -16,7 +17,7 @@ const Productpage = () => {
         price: "",
         pictures: [],
         categories: "",
-        inStock: "",
+        inStock: false,
     });
     const { id } = useParams();
 
@@ -66,10 +67,14 @@ const Productpage = () => {
         <p></p>
         <p>Desciption: {productById.description}</p>
             <p>Price: {productById.price}</p>
-            <a className={styles.PPButton}  onClick={() => addToCart(productById)}>
-                Buy Now
-            </a>
-            <AddToWishlistButton/>
+            {productById.inStock && (
+                <a className={styles.PPButton} href="">
+                    Buy Now
+                </a>
+            )}
+            {!productById.inStock && (
+                <button disabled>NOT IN STOCK</button>
+            )}
         </div>
     </div>
 )}

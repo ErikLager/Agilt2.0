@@ -2,3 +2,12 @@
     border-bottom: 1px solid black;
     padding: .5rem;
 }
+
+.product-list-images-text {
+    font-size: 8px
+}
+
+
+.selected-product {
+    background-color: lightgray
+}

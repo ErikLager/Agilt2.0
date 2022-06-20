@@ -4,14 +4,14 @@ const Product = require("../models/Product")
 
 productRouter.post("/newproduct", (req, res) => {
 	console.log("Product to add: ", req.body);
-	
+
 	const newProduct = new Product({
 		name: req.body.name,
 		inStock: req.body.inStock,
 		description: req.body.description,
 		price: req.body.price,
 		pictures: req.body.pictures,
-		categories: req.body.categories,
+		category: req.body.category,
 		isFeatured: req.body.isFeatured,
 	});
 	newProduct.save((err) => {
@@ -54,7 +54,7 @@ productRouter.get('/getproducts/:id', (req, res) => {
 			res.status(500).json({
 				msg: {
 					msgBody: 'Oops! Error! Something went wrong while getting the product by id.', err,
-					msgError: true 
+					msgError: true
 				}
 			})
 		} else {
@@ -67,11 +67,16 @@ productRouter.put('/updateproduct/:id', (req, res) => {
 	Product.findByIdAndUpdate(
 		req.params.id,
 		{
+			_id: req.body._id,
 			name: req.body.name,
 			inStock: req.body.inStock,
-			description: req.body.description
+			description: req.body.description,
+			price: req.body.price,
+			pictures: req.body.pictures,
+			category: req.body.category,
+			isFeatured: req.body.isFeatured,
 		},
-		(err) => {
+		(err, documents) => {
 			if (err) {
 				res.status(500).json({
 					msg: {
@@ -83,7 +88,8 @@ productRouter.put('/updateproduct/:id', (req, res) => {
 				res.status(200).json({
 					msg: {
 						msgBody: 'Yes sir! Product was updated.',
-						msgError: false
+						msgError: false,
+						data: documents
 					}
 				})
 			}

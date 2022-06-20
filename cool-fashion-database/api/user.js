@@ -7,7 +7,6 @@ const User = require("../models/User");
 
 require("dotenv").config();
 
-// Function that creates our JSON Web Token (cookie).
 const signToken = (userId) => {
   return jwt.sign(
     {
@@ -21,7 +20,6 @@ const signToken = (userId) => {
   );
 };
 
-// Save new user to db.
 userRouter.post("/register", (req, res) => {
   const { username, password } = req.body;
   User.findOne({ username }, (err, user) => {
@@ -51,7 +49,6 @@ userRouter.post("/register", (req, res) => {
   });
 });
 
-// Runs local strategy middleware (passport.js file) and sets cookie to JWT created through our signToken() function.
 userRouter.post(
   "/login",
   passport.authenticate("local", { session: false }),
@@ -71,7 +68,6 @@ userRouter.post(
   }
 );
 
-// Runs JWT strategy middleware (passport.js file) to see if there is a session cookie (JWT) stored in our browser.
 userRouter.get(
   "/authenticated",
   passport.authenticate("jwt", { session: false }),
@@ -84,7 +80,25 @@ userRouter.get(
   }
 );
 
-// Runs JWT strategy middleware (passport.js file) to see if there is a session cookie (JWT) stored in our browser, then clears cookie so user is no longer authenticated.
+userRouter.get(
+  '/getallusers',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    User.find({}, (err, documents) => {
+      if (err) {
+        res.status(500).json({
+          msg: {
+            msgBody: 'Oops! Error! Something went wrong while getting users.',
+            msgError: true
+          }
+        })
+      } else {
+        res.status(200).json({ users: documents })
+      }
+    })
+  }
+)
+
 userRouter.get(
   "/logout",
   passport.authenticate("jwt", { session: false }),

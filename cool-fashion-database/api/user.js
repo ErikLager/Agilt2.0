@@ -7,7 +7,6 @@ const User = require("../models/User");
 
 require("dotenv").config();
 
-// Function that creates our JSON Web Token (cookie).
 const signToken = (userId) => {
   return jwt.sign(
     {
@@ -21,7 +20,6 @@ const signToken = (userId) => {
   );
 };
 
-// Save new user to db.
 userRouter.post("/register", (req, res) => {
   const { username, password } = req.body;
   User.findOne({ username }, (err, user) => {
@@ -51,7 +49,6 @@ userRouter.post("/register", (req, res) => {
   });
 });
 
-// Runs local strategy middleware (passport.js file) and sets cookie to JWT created through our signToken() function.
 userRouter.post(
   "/login",
   passport.authenticate("local", { session: false }),
@@ -71,7 +68,6 @@ userRouter.post(
   }
 );
 
-// Runs JWT strategy middleware (passport.js file) to see if there is a session cookie (JWT) stored in our browser.
 userRouter.get(
   "/authenticated",
   passport.authenticate("jwt", { session: false }),
@@ -84,7 +80,66 @@ userRouter.get(
   }
 );
 
-// Runs JWT strategy middleware (passport.js file) to see if there is a session cookie (JWT) stored in our browser, then clears cookie so user is no longer authenticated.
+userRouter.get(
+  '/getallusers',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    User.find({}, (err, documents) => {
+      if (err) {
+        res.status(500).json({
+          msg: {
+            msgBody: 'Oops! Error! Something went wrong while getting users.',
+            msgError: true
+          }
+        })
+      } else {
+        res.status(200).json({ users: documents })
+      }
+    })
+  }
+)
+
+
+userRouter.put(
+  '/updateuser/:id',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    User.findByIdAndUpdate(
+      req.params.id,
+      {
+        username: req.body.name,
+        password: req.body.password
+      },
+      (err) => {
+        if (err) {
+          res.status(500).json({
+            msg: {
+              msgBody: 'Oh no! An error happened while updating user data.',
+              msgError: true
+            }
+          })
+        } else {
+          const { username, password } = req.body;
+          const newUser = new User({ username, password });
+          newUser.save((err, documents) => {
+            if (err) {
+              res
+                .status(500)
+                .json({ msg: { msgBody: "Fudge! An error occured...", msgError: true } });
+            } else {
+              res.status(201).json({
+                msg: "Wiii!! User successfully updated",
+                data: documents
+              });
+            }
+          })
+        }
+      }
+    )
+  }
+)
+
+
 userRouter.get(
   "/logout",
   passport.authenticate("jwt", { session: false }),

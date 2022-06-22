@@ -81,6 +81,24 @@ userRouter.get(
 );
 
 userRouter.get(
+  '/getuser/:id',
+  (req, res) => {
+    User.findById(
+      req.params.id,
+      (err, documents) => {
+        if (err) {
+          res.status(500).json({
+            message: 'Oops! Error! Something went wrong while getting the user by id.', err,
+          })
+        } else {
+          res.status(200).json(documents)
+        }
+      }
+    )
+  }
+)
+
+userRouter.get(
   '/getallusers',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {

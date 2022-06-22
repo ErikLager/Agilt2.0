@@ -12,7 +12,6 @@ const UserSchema = mongoose.Schema({
   },
 });
 
-// Middleware that runs before every MongoDB save call via Mongoose.
 UserSchema.pre("save", function (next) {
   if (!this.isModified("password")) next();
   bcrypt.hash(this.password, 10, (err, passwordHashed) => {
@@ -22,7 +21,6 @@ UserSchema.pre("save", function (next) {
   });
 });
 
-// Gets call from passport local strategy to compare password submitted from client with password on user in DB.
 UserSchema.methods.comparePassword = function (password, cb) {
   bcrypt.compare(password, this.password, (err, isMatch) => {
     if (err) {

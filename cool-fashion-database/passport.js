@@ -11,7 +11,6 @@ const cookieExtractor = (req) => {
   return token;
 };
 
-// JWT strategy - gets run every time the passport "JWT" argument set on passports authenticate param on request handler.
 passport.use(
   new jwtStrategy(
     {
@@ -28,7 +27,6 @@ passport.use(
   )
 );
 
-// Local strategy - gets run every time the passport "local" argument is set on passports authenticate param on request handler.
 passport.use(
   new localStrategy((username, password, done) => {
     User.findOne({ username }, (err, user) => {
